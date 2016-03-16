@@ -21,6 +21,17 @@ class Array
     end
     nil
   end
+
+  def binary_search_rec(val, left, right)
+    return nil unless left < right
+    mid = (left + right) / 2
+    return mid if self[mid] == val
+    if val < self[mid]
+      binary_search_rec(val, left, mid)
+    else
+      binary_search_rec(val, mid+1, right)
+    end
+  end
 end
 
 STDIN.readline
@@ -30,6 +41,7 @@ search = STDIN.readline.to_ia
 
 ans = 0
 search.each do |v|
-  ans += 1 unless subject.binary_search(v).nil?
+  #ans += 1 unless subject.binary_search(v).nil?
+  ans += 1 unless subject.binary_search_rec(v, 0 , subject.size).nil?
 end
 puts ans
